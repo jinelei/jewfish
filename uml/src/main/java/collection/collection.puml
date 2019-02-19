@@ -1,0 +1,38 @@
+@startuml
+
+interface Iterable
+
+interface Collection extends Iterable
+note left : 集合顶层接口
+
+interface Set extends Collection {
+}
+note left of Set: 不允许有重复元素的集合
+interface List extends Collection
+note left of List: 允许有重复元素的集合
+interface Queue extends Collection
+note left of Queue: 队列
+
+abstract class AbstractSet extends AbstractCollection implements Set
+note left of AbstractSet: 抽象Set类，实现了equals、removeAll等
+
+class HashSet extends AbstractSet implements Set, Cloneable, Serializable
+note left of HashSet: 实际上基于HashMap实现
+
+class LinkedHashSet extends HashSet implements Set, Cloneable, Serializable
+note left of LinkedHashSet: 维护插入顺序的HashSet
+
+interface SortedSet extends Set
+note left of SortedSet: 带排序的Set
+
+interface NavigableSet extends SortedSet
+note left of NavigableSet: 带导航的Set
+
+class TreeSet extends AbstractSet implements NavigableSet, Cloneable, Serializable
+note left of TreeSet: TreeSet
+
+class Vector extends AbstractList implements List, RandomAccess, Cloneable, Serializable
+
+abstract class AbstractList extends AbstractCollection implements List
+
+@enduml
